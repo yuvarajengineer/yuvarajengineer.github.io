@@ -28,8 +28,10 @@ jobs:
 
       - name: Commit and push HTML file
         run: |
+          rm index.html
+          ls output_*.html && mv "$(ls -t output_*.html | head -1)" index.html
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add output_*.html
+          git add .
           git commit -m "Add generated HTML file with timestamp"
           git push
